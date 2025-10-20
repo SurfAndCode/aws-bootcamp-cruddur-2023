@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  backend-flask:
+    image: backend-flask:latest   # <-- local image tag
+    pull_policy: never
+    environment:
+      FRONTEND_URL: "http://localhost:3000"
+      BACKEND_URL: "http://localhost:4567"
+    ports:
+      - "4567:4567"
+    # Optional: keep this if you want live-editing from your working dir
+    volumes:
+      - ./backend-flask:/backend-flask
+    networks:
+      - internal-network
+    restart: unless-stopped
+
+  frontend-react-js:
+    image: frontend-react-js:latest  # <-- local image tag
+    pull_policy: never
+    environment:
+      REACT_APP_BACKEND_URL: "http://localhost:4567"
+    ports:
+      - "3000:3000"
+    # Optional: remove if your image already contains the built frontend
+    volumes:
+      - ./frontend-react-js:/frontend-react-js
+    depends_on:
+      - backend-flask
+    networks:
+      - internal-network
+    restart: unless-stopped
+
+networks:
+  internal-network:
+    driver: bridge
+    name: cruddur
