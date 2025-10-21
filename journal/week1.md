@@ -9,16 +9,16 @@ docker rm $(docker ps -aq)
 docker rmi $(docker images -a -q)
 
 FRONTEND:
+docker build --network=host -t frontend-react-js ./frontend-react-js
+
 cd frontend-react-js
 npm i
 
 docker run -p 3000:3000 -d frontend-react-js
 
 DOCKER-COMPOSE:
-
 docker compose up --build
 
-11:22
 
 
 
