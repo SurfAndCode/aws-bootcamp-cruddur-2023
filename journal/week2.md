@@ -2,4 +2,6 @@
 
 https://dev.to/pu-lazydev/installing-aws-cli-v2-on-wsl-ubuntu-plg
 
-12:28
+export HONEYCOMB_API_KEY="tqd2wChLtfYExonf1JmxiP"
+export HONEYCOMB_SERVICE_NAME="Cruddur"
+
