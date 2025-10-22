@@ -17,7 +17,7 @@ npm i
 docker run -p 3000:3000 -d frontend-react-js
 
 DOCKER-COMPOSE:
-docker compose up --build
+docker compose up
 docker compose down
 
 
