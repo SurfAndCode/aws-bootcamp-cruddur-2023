@@ -14,23 +14,37 @@ export default function SigninPage() {
 
 
   const onsubmit = async (event) => {
-  setErrors('')
   event.preventDefault();
+  setErrors('');
+
   try {
-    Auth.signIn(email, password)
-      .then(user => {
-        localStorage.setItem("access_token", user.signInUserSession.accessToken.jwtToken)
-        window.location.href = "/"
-      })
-      .catch(err => { console.log('Error!', err) });
-  } catch (error) {
-    if (error.code == 'UserNotConfirmedException') {
-      window.location.href = "/confirm"
+    // v6 sign-in uses named params
+    const res = await signIn({ username: email, password });
+
+    // Handle MFA / challenges if present
+    if (res.nextStep && res.nextStep.signInStep !== 'DONE') {
+      // e.g. CONFIRM_SIGN_IN_WITH_SMS_CODE, RESET_PASSWORD, CONTINUE_SIGN_IN_WITH_NEW_PASSWORD
+      // route to your challenge UI here using res.nextStep
+      return false;
     }
-    setErrors(error.message)
+
+    // Get tokens after successful sign-in
+    const { tokens } = await fetchAuthSession();
+    if (tokens && tokens.accessToken) {
+      localStorage.setItem('access_token', tokens.accessToken.toString());
+    }
+
+    window.location.href = '/';
+  } catch (error) {
+    if (error && error.name === 'UserNotConfirmedException') {
+      window.location.href = '/confirm';
+      return false;
+    }
+    setErrors((error && error.message) || String(error));
   }
-  return false
-}
+
+  return false;
+};
 
   const email_onchange = (event) => {
     setEmail(event.target.value);
