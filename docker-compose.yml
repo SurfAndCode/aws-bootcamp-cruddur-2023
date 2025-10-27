@@ -24,6 +24,10 @@ services:
     pull_policy: never
     environment:
       REACT_APP_BACKEND_URL: "http://localhost:4567"
+      REACT_APP_AWS_PROJECT_REGION: "${AWS_DEFAULT_REGION}"
+      REACT_APP_AWS_COGNITO_REGION: "${AWS_DEFAULT_REGION}"
+      REACT_APP_AWS_USER_POOLS_ID: "ap-southeast-2_rplrlVLxv"
+      REACT_APP_CLIENT_ID: "1kmloa9t2iu1tb5lov10ffk5bt"
     ports:
       - "3000:3000"
     # Optional: remove if your image already contains the built frontend
