@@ -22,14 +22,15 @@ export default function SigninPage() {
     const res = await signIn({ username: email, password });
 
     // Handle MFA / challenges if present
-    if (res.nextStep && res.nextStep.signInStep !== 'DONE') {
-      // e.g. CONFIRM_SIGN_IN_WITH_SMS_CODE, RESET_PASSWORD, CONTINUE_SIGN_IN_WITH_NEW_PASSWORD
-      // route to your challenge UI here using res.nextStep
-      return false;
-    }
+    // if (res.nextStep && res.nextStep.signInStep !== 'DONE') {
+    //   // e.g. CONFIRM_SIGN_IN_WITH_SMS_CODE, RESET_PASSWORD, CONTINUE_SIGN_IN_WITH_NEW_PASSWORD
+    //   // route to your challenge UI here using res.nextStep
+    //   return false;
+    // }
 
     // Get tokens after successful sign-in
     const { tokens } = await fetchAuthSession();
+    console.log(tokens);
     if (tokens && tokens.accessToken) {
       localStorage.setItem('access_token', tokens.accessToken.toString());
     }
