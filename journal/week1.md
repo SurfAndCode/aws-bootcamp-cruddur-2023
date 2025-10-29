@@ -30,6 +30,7 @@ f8150bccf14d   amazon/dynamodb-local:latest   "java -jar DynamoDBL…"   9 minut
 
 
 zoltano@ACL-CH0026-06:/mnt/c/Dev/aws-bootcamp-cruddur-2023$ docker exec -it 148e86a5c0be sh
+cat node_modules/aws-amplify/package.json | grep '"version"'
 
 
 
