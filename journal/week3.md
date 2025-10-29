@@ -9,3 +9,5 @@ import Auth functions (e.g., signIn, signOut, getCurrentUser, fetchAuthSession, 
 
 
 aws cognito-idp admin-set-user-password --user-pool-id ap-southeast-2_Xrwr8nr3L --username test@gmail.com --password "Test1234$" --permanent
+
+https://aws.plainenglish.io/how-to-set-up-user-auth-in-react-with-aws-amplify-and-cognito-73c3072971fc
