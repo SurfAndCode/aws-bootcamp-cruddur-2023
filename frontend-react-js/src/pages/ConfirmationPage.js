@@ -12,6 +12,7 @@ export default function ConfirmationPage() {
   const [code, setCode] = React.useState('');
   const [errors, setErrors] = React.useState('');
   const [codeSent, setCodeSent] = React.useState(false);
+  const [cognitoErrors, setCognitoErrors] = React.useState('');
 
   const params = useParams();
 
