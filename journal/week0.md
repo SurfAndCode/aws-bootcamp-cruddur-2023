@@ -5,3 +5,5 @@ export AWS_SECRET_ACCESS_KEY=""
 export AWS_DEFAULT_REGION=ap-southeast-2
 
 aws sts get-caller-identity
+
+https://github.com/omenking/aws-bootcamp-cruddur-2023
